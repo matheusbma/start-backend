@@ -15,7 +15,31 @@ create table agendamento (
     hora_inicio time not null,
     hora_fim time not null,
     id_usuario int not null,
-    id_recurso int not null,
+    reserva enum ('laboratorio', 'mesa', 'maquina') not null,
+    id_reserva int not null,
     primary key (id),
     foreign key (id_usuario) references usuario(id)
+);
+
+create table laboratorio(
+    id int not null auto_increment,
+    nome varchar(255) not null,
+    status enum ('livre', 'ocupada') not null,
+    primary key (id)
+);
+
+create table mesa (
+    id int not null auto_increment,
+    nome varchar(255) not null,
+    status enum ('livre', 'ocupada') not null,
+    id_laboratorio int not null,
+    primary key (id)
+);
+
+create table maquina (
+    id int not null auto_increment,
+    nome varchar(255) not null,
+    status enum ('livre', 'ocupada') not null,
+    id_laboratorio int not null,
+    primary key (id)
 );

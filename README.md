@@ -1,7 +1,7 @@
 ## S.T.A.R.T BACK-END
 
 TO DO
-- Finalizar mockup do banco de dados
+- Finalizar mockup do banco de dados ✓
 - Criar rotas de autenticação
 - Criar Endpoints de Get, Post, Put e Delete
 
@@ -11,3 +11,6 @@ Banco de Dados: http://localhost:8080/h2-console
 endpoints feitos:
 - /usuarios
 - /agendamentos
+- /mesas
+- /maquinas
+- /laboratorios
