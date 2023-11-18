@@ -39,7 +39,7 @@ public class UsuarioController {
     Optional<Usuario> usuarioExistente = repository.findByMatricula(matricula);
     if (usuarioExistente.isPresent()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-              .body("Usuário já existe em nosso banco de dados!");
+          .body("Usuário já existe em nosso banco de dados!");
     }
 
     Usuario novoUsuario = repository.save(usuario);
@@ -53,7 +53,6 @@ public class UsuarioController {
       return ResponseEntity.notFound().build();
     }
 
-    Usuario usuarioExistente = usuarioOptional.get();
     Usuario usuarioAtualizado = new Usuario(id, usuario.matricula(), usuario.nome(), usuario.email(), usuario.senha(),
         usuario.num_de_usos_maquina_1(), usuario.num_de_usos_maquina_2(), usuario.num_de_usos_maquina_3(),
         usuario.acesso());
@@ -63,12 +62,12 @@ public class UsuarioController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deletarUsuario(@PathVariable Integer id) {
+  public ResponseEntity<String> deletarUsuario(@PathVariable Integer id) {
     if (!repository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
     repository.deleteById(id);
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok("Usuário deletado com sucesso!");
   }
 
 }
