@@ -21,23 +21,27 @@ public class MaquinasController {
     this.repository = repository;
   }
 
+  // Endpoint para obter todos os agendamentos
   @GetMapping
   public Iterable<Maquina> findAll() {
     return repository.findAll();
   }
 
+  // Endpoint para obter um agendamento por id
   @GetMapping("/{id}")
   public ResponseEntity<Maquina> obterMaquinaPorId(@PathVariable Integer id) {
     Optional<Maquina> maquinaOptional = repository.findById(id);
     return maquinaOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
+  // Endpoint para criar um novo agendamento
   @PostMapping
   public ResponseEntity<Maquina> criarMaquina(@RequestBody Maquina maquina) {
     Maquina novaMaquina = repository.save(maquina);
     return ResponseEntity.status(HttpStatus.CREATED).body(novaMaquina);
   }
 
+  // Endpoint para atualizar um agendamento existente
   @PutMapping("/{id}")
   public ResponseEntity<Maquina> atualizarMaquina(@PathVariable Integer id, @RequestBody Maquina maquinaAtualizada) {
     Optional<Maquina> maquinaOptional = repository.findById(id);
@@ -53,12 +57,4 @@ public class MaquinasController {
     return ResponseEntity.ok(maquinaSalva);
   }
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deletarMaquina(@PathVariable Integer id) {
-    if (!repository.existsById(id)) {
-      return ResponseEntity.notFound().build();
-    }
-    repository.deleteById(id);
-    return ResponseEntity.noContent().build();
-  }
 }

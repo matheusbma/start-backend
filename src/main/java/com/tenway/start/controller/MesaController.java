@@ -15,27 +15,33 @@ import java.util.Optional;
 public class MesaController {
 
   private final MesasRepository repository;
-@Autowired
+
+  @Autowired
   public MesaController(MesasRepository repository) {
     this.repository = repository;
   }
 
+  // Endpoint para obter todos os agendamentos
   @GetMapping
   public Iterable<Mesa> findAll() {
     return repository.findAll();
   }
 
+  // Endpoint para obter um agendamento por id
   @GetMapping("/{id}")
   public ResponseEntity<Mesa> obterMesaPorId(@PathVariable Integer id) {
     Optional<Mesa> mesaOptional = repository.findById(id);
     return mesaOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
+  // Endpoint para criar um novo agendamento
   @PostMapping
   public ResponseEntity<Mesa> criarMesa(@RequestBody Mesa mesa) {
     Mesa novaMesa = repository.save(mesa);
     return ResponseEntity.status(HttpStatus.CREATED).body(novaMesa);
   }
+
+  // Endpoint para atualizar um agendamento existente
   @PutMapping("/{id}")
   public ResponseEntity<Mesa> atualizarMesa(@PathVariable Integer id, @RequestBody Mesa mesa) {
     Optional<Mesa> mesaOptional = repository.findById(id);
@@ -43,19 +49,10 @@ public class MesaController {
       return ResponseEntity.notFound().build();
     }
 
-    Mesa mesaExistente = mesaOptional.get();
     Mesa mesaAtualizado = new Mesa(id, mesa.nome(), mesa.status(), mesa.id_laboratorio());
 
     Mesa mesaSalvo = repository.save(mesaAtualizado);
-    return ResponseEntity.ok(mesaAtualizado);
-  }
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deletarMesa(@PathVariable Integer id) {
-    if (!repository.existsById(id)) {
-      return ResponseEntity.notFound().build();
-    }
-    repository.deleteById(id);
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok(mesaSalvo);
   }
 
 }

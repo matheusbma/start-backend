@@ -24,6 +24,7 @@ public class LaboratoriosController {
     return repository.findAll();
   }
 
+  // Endpoint para obter um agendamento por id
   @GetMapping("/{id}")
   public ResponseEntity<Laboratorio> obterLaboratorioPorId(@PathVariable Integer id) {
     Optional<Laboratorio> laboratorioOptional = repository.findById(id);
@@ -39,7 +40,8 @@ public class LaboratoriosController {
 
   // Endpoint para atualizar um laboratório existente
   @PutMapping("/{id}")
-  public ResponseEntity<Laboratorio> atualizarLaboratorio(@PathVariable Integer id, @RequestBody Laboratorio laboratorioAtualizado) {
+  public ResponseEntity<Laboratorio> atualizarLaboratorio(@PathVariable Integer id,
+      @RequestBody Laboratorio laboratorioAtualizado) {
     Optional<Laboratorio> laboratorioOptional = repository.findById(id);
     if (laboratorioOptional.isEmpty()) {
       return ResponseEntity.notFound().build();
@@ -50,16 +52,6 @@ public class LaboratoriosController {
 
     Laboratorio laboratorioSalvo = repository.save(laboratorioExistente);
     return ResponseEntity.ok(laboratorioSalvo);
-  }
-
-  // Endpoint para deletar um laboratório
-  @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deletarLaboratorio(@PathVariable Integer id) {
-    if (!repository.existsById(id)) {
-      return ResponseEntity.notFound().build();
-    }
-    repository.deleteById(id);
-    return ResponseEntity.noContent().build();
   }
 
 }

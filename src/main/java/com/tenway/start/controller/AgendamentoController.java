@@ -19,17 +19,20 @@ public class AgendamentoController {
     this.repository = repository;
   }
 
+  // Endpoint para obter todos os agendamentos
   @GetMapping
   public Iterable<Agendamento> findAll() {
     return repository.findAll();
   }
 
+  // Endpoint para obter um agendamento por id
   @GetMapping("/{id}")
   public ResponseEntity<Agendamento> obterAgendamentoPorId(@PathVariable Integer id) {
     Optional<Agendamento> agendamentoOptional = repository.findById(id);
     return agendamentoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
+  // Endpoint para criar um novo agendamento
   @PostMapping
   public ResponseEntity<Agendamento> criarAgendamento(@RequestBody Agendamento agendamento) {
     Agendamento novoAgendamento = repository.save(agendamento);
@@ -38,14 +41,17 @@ public class AgendamentoController {
 
   // Endpoint para atualizar um agendamento existente
   @PutMapping("/{id}")
-  public ResponseEntity<Agendamento> atualizarAgendamento(@PathVariable Integer id, @RequestBody Agendamento agendamentoAtualizado) {
+  public ResponseEntity<Agendamento> atualizarAgendamento(@PathVariable Integer id,
+      @RequestBody Agendamento agendamentoAtualizado) {
     Optional<Agendamento> agendamentoOptional = repository.findById(id);
     if (agendamentoOptional.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
 
     Agendamento agendamentoExistente = agendamentoOptional.get();
-    agendamentoExistente = new Agendamento(id, agendamentoAtualizado.data(), agendamentoAtualizado.hora_inicio(), agendamentoAtualizado.hora_fim(), agendamentoAtualizado.id_usuario(), agendamentoAtualizado.reserva(), agendamentoAtualizado.id_reserva());
+    agendamentoExistente = new Agendamento(id, agendamentoAtualizado.data(), agendamentoAtualizado.hora_inicio(),
+        agendamentoAtualizado.hora_fim(), agendamentoAtualizado.id_usuario(), agendamentoAtualizado.reserva(),
+        agendamentoAtualizado.id_reserva());
 
     Agendamento agendamentoSalvo = repository.save(agendamentoExistente);
     return ResponseEntity.ok(agendamentoSalvo);
@@ -53,12 +59,12 @@ public class AgendamentoController {
 
   // Endpoint para deletar um agendamento
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> deletarAgendamento(@PathVariable Integer id) {
+  public ResponseEntity<String> deletarAgendamento(@PathVariable Integer id) {
     if (!repository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
     repository.deleteById(id);
-    return ResponseEntity.noContent().build();
+    return ResponseEntity.ok("Agendamento deletado com sucesso!");
   }
 
 }
