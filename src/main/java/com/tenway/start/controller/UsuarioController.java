@@ -15,7 +15,8 @@ import java.util.Optional;
 public class UsuarioController {
 
   private final UsuariosRepository repository;
-@Autowired
+
+  @Autowired
   public UsuarioController(UsuariosRepository repository) {
     this.repository = repository;
   }
@@ -26,7 +27,7 @@ public class UsuarioController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity <Usuario> obterUsuarioPorId(@PathVariable Integer id) {
+  public ResponseEntity<Usuario> obterUsuarioPorId(@PathVariable Integer id) {
     Optional<Usuario> usuarioOptional = repository.findById(id);
     return usuarioOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
@@ -45,7 +46,9 @@ public class UsuarioController {
     }
 
     Usuario usuarioExistente = usuarioOptional.get();
-    Usuario usuarioAtualizado = new Usuario(id, usuario.matricula(), usuario.nome(), usuario.email(), usuario.senha(), usuario.num_de_usos(), usuario.num_de_usos());
+    Usuario usuarioAtualizado = new Usuario(id, usuario.matricula(), usuario.nome(), usuario.email(), usuario.senha(),
+        usuario.num_de_usos_maquina_1(), usuario.num_de_usos_maquina_2(), usuario.num_de_usos_maquina_3(),
+        usuario.acesso());
 
     Usuario usuarioSalvo = repository.save(usuarioAtualizado);
     return ResponseEntity.ok(usuarioSalvo);

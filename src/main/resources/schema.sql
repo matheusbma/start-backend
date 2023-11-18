@@ -4,7 +4,9 @@ create table usuario (
     nome varchar(255) not null,
     email varchar(255) not null,
     senha varchar(255) not null,
-    num_de_usos int not null,
+    num_de_usos_maquina_1 int not null,
+    num_de_usos_maquina_2 int not null,
+    num_de_usos_maquina_3 int not null,
     acesso enum ('aluno', 'monitor', 'professor') not null,
     primary key (id)
 );

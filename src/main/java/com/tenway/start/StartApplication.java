@@ -31,18 +31,20 @@ public class StartApplication {
 		return args -> {
 			UsuariosRepository.saveAll(
 					java.util.Arrays.asList(
-							new Usuario(null, "2023100402", "Matheus Borba Maranhão de Araújo", "mbma@cesar.school", "123456", 5,
+							new Usuario(null, "2023100402", "Matheus Borba Maranhão de Araújo", "mbma@cesar.school", "123456", 5, 0,
+									0,
 									"aluno"),
-							new Usuario(null, "2023100331", "João Bosco da Silva Junior", "jbsj@cesar.school", "123456", 2, "aluno"),
-							new Usuario(null, "2023100405", "Maria Clara Porfírio de Souza", "mcps2@cesar.school", "123456", 2,
+							new Usuario(null, "2023100331", "João Bosco da Silva Junior", "jbsj@cesar.school", "123456", 4, 0, 2,
+									"aluno"),
+							new Usuario(null, "2023100405", "Maria Clara Porfírio de Souza", "mcps2@cesar.school", "123456", 2, 6, 1,
 									"monitor"),
 							new Usuario(null, "20231100359", "Pedro Henrique de Melo Muniz Raposo", "phmmrr@cesar.school", "123456",
-									6, "aluno"),
-							new Usuario(null, "2023100313", "Rodrigo Martins Dias Fernandes", "rmdf@cesar.school", "123456", 2,
+									6, 5, 0, "aluno"),
+							new Usuario(null, "2023100313", "Rodrigo Martins Dias Fernandes", "rmdf@cesar.school", "123456", 2, 4, 1,
 									"aluno"),
 							new Usuario(null, "2023100273", "Elinaldo Henrique Silva de Araújo Filho", "ehsaf@cesar.school", "123456",
-									3, "aluno"),
-							new Usuario(null, "2023100310", "Lígia Bezerra de Oliveira", "lbo@cesar.school", "123456", 3,
+									3, 0, 4, "aluno"),
+							new Usuario(null, "2023100310", "Lígia Bezerra de Oliveira", "lbo@cesar.school", "123456", 3, 2, 0,
 									"professor")));
 			AgendamentosRepository.saveAll(
 					java.util.Arrays.asList(

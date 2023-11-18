@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import com.tenway.start.model.Maquina;
 import com.tenway.start.repository.MaquinasRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,7 +15,8 @@ import java.util.Optional;
 public class MaquinasController {
 
   private final MaquinasRepository repository;
-@Autowired
+
+  @Autowired
   public MaquinasController(MaquinasRepository repository) {
     this.repository = repository;
   }
@@ -46,7 +46,8 @@ public class MaquinasController {
     }
 
     Maquina maquinaExistente = maquinaOptional.get();
-    maquinaExistente = new Maquina(id, maquinaAtualizada.nome(), maquinaAtualizada.status(), maquinaAtualizada.id_laboratorio());
+    maquinaExistente = new Maquina(id, maquinaAtualizada.nome(), maquinaAtualizada.status(),
+        maquinaAtualizada.id_laboratorio());
 
     Maquina maquinaSalva = repository.save(maquinaExistente);
     return ResponseEntity.ok(maquinaSalva);
