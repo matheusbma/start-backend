@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import com.tenway.start.model.Agendamento;
 import com.tenway.start.repository.AgendamentosRepository;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 @RestController
@@ -34,7 +36,16 @@ public class AgendamentoController {
 
   // Endpoint para criar um novo agendamento
   @PostMapping
-  public ResponseEntity<Agendamento> criarAgendamento(@RequestBody Agendamento agendamento) {
+  public ResponseEntity<?> criarAgendamento(@RequestBody Agendamento agendamento) {
+    LocalDate data = agendamento.data();
+    LocalTime horaInicio = agendamento.hora_inicio();
+
+    Optional<Agendamento> agendamentoExistente = repository.findByDataAndHoraInicio(data, horaInicio);
+    if (agendamentoExistente.isPresent()) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+              .body("Já existe um agendamento para esta data e hora de início!");
+    }
+
     Agendamento novoAgendamento = repository.save(agendamento);
     return ResponseEntity.status(HttpStatus.CREATED).body(novoAgendamento);
   }
