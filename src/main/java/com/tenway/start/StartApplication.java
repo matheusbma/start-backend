@@ -84,7 +84,7 @@ public class StartApplication {
 							new Mesa(null, "Mesa 15", "livre", 1),
 							new Mesa(null, "Mesa 16", "livre", 1),
 							new Mesa(null, "Mesa 1", "livre", 2),
-							new Mesa(null, "Mesa 2", "livre", 2),
+							new Mesa(null, "Mesa 2", "livre",  2),
 							new Mesa(null, "Mesa 3", "livre", 2),
 							new Mesa(null, "Mesa 4", "livre", 2),
 							new Mesa(null, "Mesa 5", "livre", 2),

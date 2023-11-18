@@ -21,27 +21,31 @@ public class UsuarioController {
     this.repository = repository;
   }
 
-  // Endpoint para obter todos os agendamentos
   @GetMapping
   public Iterable<Usuario> findAll() {
     return repository.findAll();
   }
 
-  // Endpoint para obter um agendamento por id
   @GetMapping("/{id}")
   public ResponseEntity<Usuario> obterUsuarioPorId(@PathVariable Integer id) {
     Optional<Usuario> usuarioOptional = repository.findById(id);
     return usuarioOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
-  // Endpoint para criar um novo agendamento
   @PostMapping
-  public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
+  public ResponseEntity<?> criarUsuario(@RequestBody Usuario usuario) {
+    String matricula = usuario.matricula();
+
+    Optional<Usuario> usuarioExistente = repository.findByMatricula(matricula);
+    if (usuarioExistente.isPresent()) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+              .body("Usuário já existe em nosso banco de dados!");
+    }
+
     Usuario novoUsuario = repository.save(usuario);
     return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
   }
 
-  // Endpoint para atualizar um agendamento existente
   @PutMapping("/{id}")
   public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
     Optional<Usuario> usuarioOptional = repository.findById(id);
@@ -49,6 +53,7 @@ public class UsuarioController {
       return ResponseEntity.notFound().build();
     }
 
+    Usuario usuarioExistente = usuarioOptional.get();
     Usuario usuarioAtualizado = new Usuario(id, usuario.matricula(), usuario.nome(), usuario.email(), usuario.senha(),
         usuario.num_de_usos_maquina_1(), usuario.num_de_usos_maquina_2(), usuario.num_de_usos_maquina_3(),
         usuario.acesso());
@@ -57,14 +62,13 @@ public class UsuarioController {
     return ResponseEntity.ok(usuarioSalvo);
   }
 
-  // Endpoint para deletar um agendamento
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deletarUsuario(@PathVariable Integer id) {
+  public ResponseEntity<Void> deletarUsuario(@PathVariable Integer id) {
     if (!repository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
     repository.deleteById(id);
-    return ResponseEntity.ok("Usuário deletado com sucesso!");
+    return ResponseEntity.noContent().build();
   }
 
 }

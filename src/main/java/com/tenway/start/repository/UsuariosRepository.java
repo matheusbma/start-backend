@@ -4,6 +4,8 @@ import com.tenway.start.model.Usuario;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UsuariosRepository extends CrudRepository<Usuario, Integer> {
+import java.util.Optional;
 
+public interface UsuariosRepository extends CrudRepository<Usuario, Integer> {
+    Optional<Usuario> findByMatricula(String matricula);
 }
