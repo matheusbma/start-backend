@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/mesas")
+@RequestMapping("/mesa")
 public class MesaController {
 
   private final MesasRepository repository;

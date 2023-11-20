@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/maquinas")
+@RequestMapping("/maquina")
 public class MaquinasController {
 
   private final MaquinasRepository repository;

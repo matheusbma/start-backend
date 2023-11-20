@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/laboratorios")
+@RequestMapping("/laboratorio")
 public class LaboratoriosController {
 
   private final LaboratoriosRepository repository;
