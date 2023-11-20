@@ -10,6 +10,7 @@ import com.tenway.start.repository.MaquinasRepository;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/maquinas")
 public class MaquinasController {

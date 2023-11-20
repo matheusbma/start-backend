@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/agendamentos")
 public class AgendamentoController {
@@ -38,12 +39,14 @@ public class AgendamentoController {
   @PostMapping
   public ResponseEntity<?> criarAgendamento(@RequestBody Agendamento agendamento) {
     LocalDate data = agendamento.data();
-    LocalTime horaInicio = agendamento.hora_inicio();
+    LocalTime horaInicio = agendamento.horaInicio();
+    LocalTime horaFim = agendamento.horaFim();
 
-    Optional<Agendamento> agendamentoExistente = repository.findByDataAndHoraInicio(data, horaInicio);
+    Optional<Agendamento> agendamentoExistente = repository.findByDataAndHoraInicioAndHoraFim(data, horaInicio,
+        horaFim);
     if (agendamentoExistente.isPresent()) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-              .body("Já existe um agendamento para esta data e hora de início!");
+          .body("Já existe um agendamento para esta data e hora de início!");
     }
 
     Agendamento novoAgendamento = repository.save(agendamento);
@@ -60,8 +63,8 @@ public class AgendamentoController {
     }
 
     Agendamento agendamentoExistente = agendamentoOptional.get();
-    agendamentoExistente = new Agendamento(id, agendamentoAtualizado.data(), agendamentoAtualizado.hora_inicio(),
-        agendamentoAtualizado.hora_fim(), agendamentoAtualizado.id_usuario(), agendamentoAtualizado.reserva(),
+    agendamentoExistente = new Agendamento(id, agendamentoAtualizado.data(), agendamentoAtualizado.horaInicio(),
+        agendamentoAtualizado.horaFim(), agendamentoAtualizado.id_usuario(), agendamentoAtualizado.reserva(),
         agendamentoAtualizado.id_reserva());
 
     Agendamento agendamentoSalvo = repository.save(agendamentoExistente);

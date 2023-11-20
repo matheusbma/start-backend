@@ -9,6 +9,7 @@ import com.tenway.start.repository.LaboratoriosRepository;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/laboratorios")
 public class LaboratoriosController {

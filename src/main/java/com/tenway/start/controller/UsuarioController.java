@@ -10,6 +10,7 @@ import com.tenway.start.repository.UsuariosRepository;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {

@@ -51,14 +51,22 @@ public class StartApplication {
 									"professor")));
 			AgendamentosRepository.saveAll(
 					java.util.Arrays.asList(
-							new Agendamento(null, LocalDate.parse("2023-11-23"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 1, "mesa", 3),
-							new Agendamento(null, LocalDate.parse("2023-11-24"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 1, "mesa", 1),
-							new Agendamento(null, LocalDate.parse("2023-11-25"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 2, "mesa", 2),
-							new Agendamento(null, LocalDate.parse("2023-11-26"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 2, "mesa", 3),
-							new Agendamento(null, LocalDate.parse("2023-11-27"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 3, "mesa", 1),
-							new Agendamento(null, LocalDate.parse("2023-11-28"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 3, "maquina", 2),
-							new Agendamento(null, LocalDate.parse("2023-11-29"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 4, "maquina", 3),
-							new Agendamento(null, LocalDate.parse("2023-11-30"), LocalTime.parse("13:00:00"), LocalTime.parse("15:30:00"), 4, "laboratorio", 1)));
+							new Agendamento(null, LocalDate.parse("2023-11-23"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 1, "mesa", 3),
+							new Agendamento(null, LocalDate.parse("2023-11-24"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 1, "mesa", 1),
+							new Agendamento(null, LocalDate.parse("2023-11-25"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 2, "mesa", 2),
+							new Agendamento(null, LocalDate.parse("2023-11-26"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 2, "mesa", 3),
+							new Agendamento(null, LocalDate.parse("2023-11-27"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 3, "mesa", 1),
+							new Agendamento(null, LocalDate.parse("2023-11-28"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 3, "maquina", 2),
+							new Agendamento(null, LocalDate.parse("2023-11-29"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 4, "maquina", 3),
+							new Agendamento(null, LocalDate.parse("2023-11-30"), LocalTime.parse("13:00:00"),
+									LocalTime.parse("15:30:00"), 4, "laboratorio", 1)));
 			LaboratoriosRepository.saveAll(
 					java.util.Arrays.asList(
 							new Laboratorio(null, "Garagem 1", "livre"),

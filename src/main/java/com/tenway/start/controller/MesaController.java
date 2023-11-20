@@ -10,6 +10,7 @@ import com.tenway.start.repository.MesasRepository;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/mesas")
 public class MesaController {

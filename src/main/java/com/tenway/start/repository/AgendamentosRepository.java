@@ -9,5 +9,5 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 public interface AgendamentosRepository extends CrudRepository<Agendamento, Integer> {
-    Optional<Agendamento> findByDataAndHoraInicio(LocalDate data, LocalTime horaInicio);
+    Optional<Agendamento> findByDataAndHoraInicioAndHoraFim(LocalDate data, LocalTime hora_inicio, LocalTime hora_fim);
 }
