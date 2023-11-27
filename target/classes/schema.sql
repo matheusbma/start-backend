@@ -1,17 +1,17 @@
-create table usuario (
+CREATE TABLE usuario (
     id int not null auto_increment,
     matricula varchar(255) not null,
     nome varchar(255) not null,
     email varchar(255) not null,
     senha varchar(255) not null,
-    num_de_usos_maquina_1 int not null,
-    num_de_usos_maquina_2 int not null,
-    num_de_usos_maquina_3 int not null,
+    num_de_usos_maquina1 int not null,
+    num_de_usos_maquina2 int not null,
+    num_de_usos_maquina3 int not null,
     acesso enum ('aluno', 'monitor', 'professor') not null,
     primary key (id)
 );
 
-create table agendamento (
+CREATE TABLE agendamento (
     id int not null auto_increment,
     data date not null,
     hora_inicio time not null,
@@ -23,14 +23,14 @@ create table agendamento (
     foreign key (id_usuario) references usuario(id)
 );
 
-create table laboratorio(
+CREATE TABLE laboratorio(
     id int not null auto_increment,
     nome varchar(255) not null,
     status enum ('livre', 'ocupada') not null,
     primary key (id)
 );
 
-create table mesa (
+CREATE TABLE mesa (
     id int not null auto_increment,
     nome varchar(255) not null,
     status enum ('livre', 'ocupada') not null,
@@ -38,7 +38,7 @@ create table mesa (
     primary key (id)
 );
 
-create table maquina (
+CREATE TABLE maquina (
     id int not null auto_increment,
     nome varchar(255) not null,
     status enum ('livre', 'ocupada') not null,

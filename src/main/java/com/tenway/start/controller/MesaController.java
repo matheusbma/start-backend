@@ -50,7 +50,7 @@ public class MesaController {
       return ResponseEntity.notFound().build();
     }
 
-    Mesa mesaAtualizado = new Mesa(id, mesa.nome(), mesa.status(), mesa.id_laboratorio());
+    Mesa mesaAtualizado = new Mesa(id, mesa.nome(), mesa.status(), mesa.idLaboratorio());
 
     Mesa mesaSalvo = repository.save(mesaAtualizado);
     return ResponseEntity.ok(mesaSalvo);

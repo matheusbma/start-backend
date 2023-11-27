@@ -55,7 +55,7 @@ public class UsuarioController {
     }
 
     Usuario usuarioAtualizado = new Usuario(id, usuario.matricula(), usuario.nome(), usuario.email(), usuario.senha(),
-        usuario.num_de_usos_maquina_1(), usuario.num_de_usos_maquina_2(), usuario.num_de_usos_maquina_3(),
+        usuario.numDeUsosMaquina1(), usuario.numDeUsosMaquina2(), usuario.numDeUsosMaquina3(),
         usuario.acesso());
 
     Usuario usuarioSalvo = repository.save(usuarioAtualizado);

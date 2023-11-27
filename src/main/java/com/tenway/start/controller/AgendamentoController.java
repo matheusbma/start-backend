@@ -43,11 +43,12 @@ public class AgendamentoController {
     LocalTime horaFim = agendamento.horaFim();
 
     // Verifica se já existe algum agendamento para a mesma data
-    Optional<Agendamento> agendamentoExistente = repository.findByDataAndHoraInicioAndHoraFim(data, horaInicio, horaFim);
+    Optional<Agendamento> agendamentoExistente = repository.findByDataAndHoraInicioAndHoraFim(data, horaInicio,
+        horaFim);
     if (agendamentoExistente.isPresent()) {
       if (horarioConflitante(agendamentoExistente.get(), horaInicio, horaFim)) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Já existe um agendamento para esta data e horário!");
+            .body("Já existe um agendamento para esta data e horário!");
       }
     }
 
@@ -55,15 +56,19 @@ public class AgendamentoController {
     return ResponseEntity.status(HttpStatus.CREATED).body(novoAgendamento);
   }
 
-  private boolean horarioConflitante(Agendamento agendamentoExistente, LocalTime horaInicioNovo, LocalTime horaFimNovo) {
+  private boolean horarioConflitante(Agendamento agendamentoExistente, LocalTime horaInicioNovo,
+      LocalTime horaFimNovo) {
     LocalTime horaInicioExistente = agendamentoExistente.horaInicio();
     LocalTime horaFimExistente = agendamentoExistente.horaFim();
 
-    // Verifica se o novo horário começa ou termina dentro do intervalo de um agendamento existente
-    boolean novoComecaNoIntervalo = !horaInicioNovo.isBefore(horaInicioExistente) && horaInicioNovo.isBefore(horaFimExistente);
+    // Verifica se o novo horário começa ou termina dentro do intervalo de um
+    // agendamento existente
+    boolean novoComecaNoIntervalo = !horaInicioNovo.isBefore(horaInicioExistente)
+        && horaInicioNovo.isBefore(horaFimExistente);
     boolean novoTerminaNoIntervalo = horaFimNovo.isAfter(horaInicioExistente) && !horaFimNovo.isAfter(horaFimExistente);
 
-    // Verifica se o novo horário está completamente dentro do intervalo do agendamento existente
+    // Verifica se o novo horário está completamente dentro do intervalo do
+    // agendamento existente
     boolean intervaloCompleto = horaInicioNovo.isBefore(horaInicioExistente) && horaFimNovo.isAfter(horaFimExistente);
 
     return novoComecaNoIntervalo || novoTerminaNoIntervalo || intervaloCompleto;
@@ -80,8 +85,8 @@ public class AgendamentoController {
 
     Agendamento agendamentoExistente = agendamentoOptional.get();
     agendamentoExistente = new Agendamento(id, agendamentoAtualizado.data(), agendamentoAtualizado.horaInicio(),
-        agendamentoAtualizado.horaFim(), agendamentoAtualizado.id_usuario(), agendamentoAtualizado.reserva(),
-        agendamentoAtualizado.id_reserva());
+        agendamentoAtualizado.horaFim(), agendamentoAtualizado.idUsuario(), agendamentoAtualizado.reserva(),
+        agendamentoAtualizado.idReserva());
 
     Agendamento agendamentoSalvo = repository.save(agendamentoExistente);
     return ResponseEntity.ok(agendamentoSalvo);

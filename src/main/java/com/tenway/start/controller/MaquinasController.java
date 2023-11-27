@@ -52,7 +52,7 @@ public class MaquinasController {
 
     Maquina maquinaExistente = maquinaOptional.get();
     maquinaExistente = new Maquina(id, maquinaAtualizada.nome(), maquinaAtualizada.status(),
-        maquinaAtualizada.id_laboratorio());
+        maquinaAtualizada.idLaboratorio());
 
     Maquina maquinaSalva = repository.save(maquinaExistente);
     return ResponseEntity.ok(maquinaSalva);
