@@ -16,3 +16,5 @@ endpoints feitos:
 - /laboratorios
 
 Para rodar a aplicação basta ir StartApplication.java e rodar como Java Application
+
+Json do Postman na pasta /documentation
