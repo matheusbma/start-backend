@@ -2,8 +2,8 @@
 
 TO DO
 - Finalizar mockup do banco de dados ✓
-- Criar rotas de autenticação
-- Criar Endpoints de Get, Post, Put e Delete
+- Criar rotas de autenticação ✓
+- Criar Endpoints de Get, Post, Put e Delete ✓
 
 Localhost: http://localhost:8080
 Banco de Dados: http://localhost:8080/h2-console
@@ -14,3 +14,5 @@ endpoints feitos:
 - /mesas
 - /maquinas
 - /laboratorios
+
+Para rodar a aplicação basta ir StartApplication.java e rodar como Java Application
