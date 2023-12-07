@@ -17,4 +17,6 @@ endpoints feitos:
 
 Para rodar a aplicação basta ir StartApplication.java e rodar como Java Application
 
-Json do Postman na pasta /documentation
+Json do Postman na pasta /documentation para testar endpoints
+
+No drive, na pasta prototiopos, tem o vídeo rodando todos os endpoints no postman
